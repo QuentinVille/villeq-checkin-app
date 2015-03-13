@@ -1,0 +1,9 @@
+<h2>check in list</h2>
+
+<ul class="list-group">
+	<% _.each(checkInList, function(checkin){ %>
+		<li class="list-group-item">
+			item <b><%= checkin.get('id') %></b>
+		</li>
+	<% }); %>
+</ul>

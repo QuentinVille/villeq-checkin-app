@@ -1,2 +1,3 @@
-# villeq-checkin-app
-Client backboneJS réalisé dans le cadre d'un cours
+# checkin-app
+
+Cours BackboneJS LP Smin 2015
