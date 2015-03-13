@@ -4,13 +4,15 @@ define(
         'jquery', // Chargement de lib/jquery/jquery
         'underscore',
         'backbone',
-        'views/checkin/list',  // views/checkin/list.js
+        'views/checkin/list',
+        'views/checkin/details',
         'config'
-    ], function($,_,Backbone, CheckinListView, Config){
+    ], function($,_,Backbone, CheckinListView, CheckInDetailsView, Config){
 
         var Router = Backbone.Router.extend({
             routes:{
                 '': 'home',
+                'checkin/:id': 'checkin',
                 'hello' : 'hello',
                 'hello/:name' : 'hello'
             }
@@ -36,6 +38,14 @@ define(
 
             routeur.on('route:hello', function(name){
                 console.log('hello ' + name);
+            });
+
+            routeur.on('route:checkin', function(id){
+                console.log('checkin route');
+                checkInDetailsView = new CheckInDetailsView();
+                checkInDetailsView.render({
+                    id: id
+                });
             });
 
             Backbone.history.start();
