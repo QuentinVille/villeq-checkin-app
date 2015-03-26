@@ -12,7 +12,7 @@ define(
         var Router = Backbone.Router.extend({
             routes:{
                 '': 'home',
-                'checkin/:id': 'checkin',
+                'checkin/:id': 'checkinDetails',
                 'hello' : 'hello',
                 'hello/:name' : 'hello'
             }
@@ -40,8 +40,8 @@ define(
                 console.log('hello ' + name);
             });
 
-            routeur.on('route:checkin', function(id){
-                console.log('checkin route');
+            routeur.on('route:checkinDetails', function(id){
+                console.log('checkin route details');
                 checkInDetailsView = new CheckInDetailsView();
                 checkInDetailsView.render({
                     id: id

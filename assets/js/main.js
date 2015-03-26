@@ -16,7 +16,8 @@ require.config({
         'jquery': {
             export: '$'
         }
-    }
+    },
+    urlArgs: "_=" + (new Date()).getTime()
 });
 
 
