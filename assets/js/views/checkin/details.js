@@ -3,13 +3,12 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'models/checkin',
-        'text!./../../../templates/checkin/details.html' // le plugin text permet de récupérer le template
+        'models/checkin'
     ], function($,_,Backbone,CheckInModel){
         
         var CheckInDetailsView = Backbone.View.extend({
             el: '#chekinlist',
-            template : _.template(checkinDetailsTemplate),
+            // template : _.template(checkinListTemplate),
 
             render: function(options){
                 console.log('CheckInDetailsView Render ' + options.id);
@@ -19,10 +18,6 @@ define(
                     self.checkIn.fetch({
                         success: function(checkin){
                             console.log(checkin);
-
-                            self.$el.html(self.template({
-                            checkInDetail: checkins.models 
-                        }));
                            
                         }
                     });
