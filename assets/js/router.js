@@ -6,12 +6,14 @@ define(
         'backbone',
         'views/checkin/list',
         'views/checkin/details',
+        'views/checkin/add',
         'config'
-    ], function($,_,Backbone, CheckinListView, CheckInDetailsView, Config){
+    ], function($,_,Backbone, CheckinListView, CheckInDetailsView, checkInAddView, Config){
 
         var Router = Backbone.Router.extend({
             routes:{
                 '': 'home',
+                'checkin/add': 'checkinAdd', //il faut être devant pour être interprété sinon ce retrouve dans la vue détail à cause des : de l'id
                 'checkin/:id': 'checkinDetails',
                 'hello' : 'hello',
                 'hello/:name' : 'hello'
@@ -46,6 +48,12 @@ define(
                 checkInDetailsView.render({
                     id: id
                 });
+            });
+
+            routeur.on('route:checkinAdd', function(){
+                console.log('checkin route add');
+                checkInAddView = new checkInAddView();
+                checkInAddView.render();
             });
 
             Backbone.history.start();
