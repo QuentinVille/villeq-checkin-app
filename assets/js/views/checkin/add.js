@@ -14,11 +14,23 @@ define(
 
             render: function(options){
                 console.log('CheckInAddView Render');
-                console.log(this.template());
                 this.$el.html(this.template());
                 console.log(' / CheckInAddView Render');
- 
+            },
+            events: {
+                "submit #chekcInForm": "saveChekcInForm"
+            },
+            saveChekcinForm: function(event) {
+                event.preventDefault();
+                
+                checkin = new CheckInModel();
 
+                serializeArray = $(event.currentTarget).serializeArray();
+
+                $.each(serializeArray, function(i, o) {
+                    checkin.set(o.name, o.value);
+                });
+                checkin.save();
             }
 
         });
