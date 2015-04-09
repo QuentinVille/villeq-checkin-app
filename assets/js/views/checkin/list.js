@@ -11,15 +11,15 @@ define(
         var CheckInListView = Backbone.View.extend({
             el: '#content',
             template : _.template(checkinListTemplate),
-            map: null,
-            myLatlng: null,
-            mapOptions: null,
-            markers: [],
-            marker: null,
 
             render: function(){
                 console.log('CheckInListView Render');
                 var self = this;
+                var map = null;
+                var myLatlng = null;
+                var mapOptions = null;
+                var markers = [];
+                var marker = null;
                 checkInCollection = new CheckInCollection();
                 checkInCollection.fetch({
                     success: function (checkins){
@@ -44,9 +44,6 @@ define(
 
                         // Parcours de l'ensemble des checkins et création des markers
                         _.each(checkins.models, function (checkin){
-                            console.log(checkin.get('lat'));
-                            console.log(checkin.get('lng'));
-
                             checkinLatlng = new google.maps.LatLng(checkin.get('lat'),checkin.get('lng')); 
 
                             marker = new google.maps.Marker({
@@ -54,15 +51,11 @@ define(
                                 map: map,
                                 title: 'MyCheckin with id='+checkin.get('id')
                             });
+                            markers.push(marker);
+                            console.log(marker);
+                            console.log(markers);
 
-                        });
-
-                        // this.map = new google.maps.Map(
-                        //     document.getElementById('map-canvas'),{
-                        //     zoom:16,
-                        //     center: new google.maps.LatLng(43.81451767218152, -91.25057458877563),
-                        //     mapTypeId: google.maps.MapTypeId.ROADMAP
-                        // });       
+                        });      
                         
                     }
 
