@@ -1,0 +1,11 @@
+to-do-list checkin-app
+
+- Faire un checkin avec la photo, la date, et un il y a XX minutes.
+
+- Depuis l'adresse, un appel à l'API Google Address récupérer l'adresse des coordonnées GPS.
+
+- Récupérer les coordonnées GPS du navigateur (HTML5).
+
+_____________________________________________________________________________________________
+
+Require JS + Google Maps

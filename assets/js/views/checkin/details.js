@@ -5,7 +5,6 @@ define(
         'backbone',
         'models/checkin',
         'text!./../../../templates/checkin/details.html' // le plugin text permet de récupérer le template
-
     ], function($,_,Backbone,CheckInModel,CheckInDetailsTemplate){
         
         var CheckInDetailsView = Backbone.View.extend({
@@ -22,9 +21,9 @@ define(
                             console.log(checkin);
                             //console.log(checkin.models);
 
-                        self.$el.html(self.template({
-                            checkInDetails: checkin 
-                        })); 
+                        //self.$el.html(self.template({
+                        //    checkInDetails: checkin 
+                        //})); 
                            
                         }
                     });
