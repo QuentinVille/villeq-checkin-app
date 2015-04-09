@@ -30,7 +30,7 @@ define(
                             checkInList: checkins.models
                         })); 
 
-                        /////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////
                         // FONCTION DE GEOLOCALISATION //
                         var options = {
                           enableHighAccuracy: true,
@@ -62,7 +62,35 @@ define(
                         function error(err) {
                           console.warn('ERROR(' + err.code + '): ' + err.message);
                         };
-                        /////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////
+                        // FONCTION DE CREATION DE LA MAP avec les markers des checkins //
+                        // Définition des paramètres par défaut d'affichage de la carte //
+                        function createMap() {
+                            mapOptions = {
+                                zoom: 12,
+                                center: myLatlng
+                            }                        
+
+                            // Génération de la carte dans la view
+                            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+                            // Parcours de l'ensemble des checkins et création des markers
+                            _.each(checkins.models, function (checkin){
+                                checkinLatlng = new google.maps.LatLng(checkin.get('lat'),checkin.get('lng')); 
+
+                                marker = new google.maps.Marker({
+                                    position: checkinLatlng,
+                                    map: map,
+                                    title: 'MyCheckin with id='+checkin.get('id')
+                                });
+                                markers.push(marker);
+                                console.log(marker);
+                                console.log(markers);
+
+                            }); 
+                            // Fin de la génération de la carte
+                        };
+                        //////////////////////////////////////////////////////////////////
 
                         if(navigator.geolocation) {
                         // L'API est disponible 
@@ -72,32 +100,16 @@ define(
                             myLatlng = new google.maps.LatLng(45.1747598,5.7071189);
                             console.log('default'); console.log(myLatlng);
                         }
+
+                        if(myLatlng==null) {
+                            //alert('Waiting for your position...');
+                            setTimeout(function(){ 
+                                createMap(); 
+                            }, 5000); // Try to create carte after timeout
+                            return false;
+                        }
                         
-                        // Définition des paramètres par défaut d'affichage de la carte
-                        mapOptions = {
-                            zoom: 12,
-                            center: myLatlng/
-                        }                        
 
-                        // Génération de la carte dans la view
-                        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-                        // Parcours de l'ensemble des checkins et création des markers
-                        _.each(checkins.models, function (checkin){
-                            checkinLatlng = new google.maps.LatLng(checkin.get('lat'),checkin.get('lng')); 
-
-                            marker = new google.maps.Marker({
-                                position: checkinLatlng,
-                                map: map,
-                                title: 'MyCheckin with id='+checkin.get('id')
-                            });
-                            markers.push(marker);
-                            console.log(marker);
-                            console.log(markers);
-
-                        }); 
-                        // Fin de la génération de la carte
-                        
                     }
 
 
