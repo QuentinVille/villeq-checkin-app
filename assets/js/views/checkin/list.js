@@ -30,14 +30,54 @@ define(
                             checkInList: checkins.models
                         })); 
 
-                        // Ici il faut ajouter les coordonnées récupérés qui proviennet de l'ordinateur
-                        myLatlng = new google.maps.LatLng(45.1747598,5.7071189); 
+                        /////////////////////////////////////////////
+                        // FONCTION DE GEOLOCALISATION //
+                        var options = {
+                          enableHighAccuracy: true,
+                          timeout: 5000,
+                          maximumAge: 0
+                        };
+                        // Fonction de callback en cas de succès
+                        function success(pos) {
+                            var crd = pos.coords;
 
+                            console.log('Your current position is:');
+                            console.log('Latitude : ' + crd.latitude);
+                            console.log('Longitude: ' + crd.longitude);
+                            console.log('More or less ' + crd.accuracy + ' meters.');
+
+                            // Un nouvel objet LatLng pour Google Maps avec les paramètres de position
+                            myLatlng = new google.maps.LatLng(crd.latitude, crd.longitude);
+                            console.log(myLatlng);
+
+                            // Ajout d'un marqueur à la position trouvée
+                            marker = new google.maps.Marker({
+                              position: myLatlng,
+                              map: map,
+                              title:"Vous êtes ici"
+                            });
+                                markers.push(marker);
+                        };
+
+                        function error(err) {
+                          console.warn('ERROR(' + err.code + '): ' + err.message);
+                        };
+                        /////////////////////////////////////////////
+
+                        if(navigator.geolocation) {
+                        // L'API est disponible 
+                            navigator.geolocation.getCurrentPosition(success, error, options);
+                        }
+                        else {
+                            myLatlng = new google.maps.LatLng(45.1747598,5.7071189);
+                            console.log('default'); console.log(myLatlng);
+                        }
+                        
                         // Définition des paramètres par défaut d'affichage de la carte
                         mapOptions = {
                             zoom: 12,
-                            center: myLatlng
-                        }
+                            center: myLatlng/
+                        }                        
 
                         // Génération de la carte dans la view
                         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -55,7 +95,8 @@ define(
                             console.log(marker);
                             console.log(markers);
 
-                        });      
+                        }); 
+                        // Fin de la génération de la carte
                         
                     }
 
