@@ -69,7 +69,7 @@ define(
                         $('#loading').hide(); 
 
                             mapOptions = {
-                                zoom: 12,
+                                zoom: 11,
                                 center: myLatlng
                             }                        
 
