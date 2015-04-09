@@ -7,7 +7,9 @@
 <ul class="list-group">
 	<% _.each(checkInList, function(checkin){ %>
 		<li class="list-group-item">
-			item <b><%= checkin.get('id') %></b>
+		<b><%= checkin.get('id') %></b> -
+		<img src=<%= checkin.get('user')['picture'] %> style="width: 5%; height: 20%;" >
+		<%= checkin.get('user')['name'] %> - Créé le : <b><%= checkin.get('created_at') %></b>
 		</li>
 	<% }); %>
 </ul>
