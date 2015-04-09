@@ -20,6 +20,12 @@ define(
                         console.log(self.$el);
                         console.log(checkins.models);
 
+                        _.each(checkins.models, function (checkin){
+                            console.log(checkin.get('lat'));
+                            console.log(checkin.get('lng'));
+                        });
+
+
                         self.$el.html(self.template({
                             checkInList: checkins.models 
                         }));
