@@ -66,6 +66,8 @@ define(
                         // FONCTION DE CREATION DE LA MAP avec les markers des checkins //
                         // Définition des paramètres par défaut d'affichage de la carte //
                         function createMap() {
+                        $('#loading').hide(); 
+
                             mapOptions = {
                                 zoom: 12,
                                 center: myLatlng
@@ -102,8 +104,9 @@ define(
                         }
 
                         if(myLatlng==null) {
+                            $('#loading').show();
                             //alert('Waiting for your position...');
-                            setTimeout(function(){ 
+                            setTimeout(function(){
                                 createMap(); 
                             }, 5000); // Try to create carte after timeout
                             return false;
