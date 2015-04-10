@@ -34,11 +34,11 @@ define(
                         // FONCTION DE GEOLOCALISATION //
                         var options = {
                           enableHighAccuracy: true,
-                          timeout: 5000,
                           maximumAge: 0
                         };
                         // Fonction de callback en cas de succès
-                        function success(pos) {
+                        function successPos(pos) {
+                            console.log("debut getCurrentPosition");
                             var crd = pos.coords;
 
                             console.log('Your current position is:');
@@ -49,6 +49,8 @@ define(
                             // Un nouvel objet LatLng pour Google Maps avec les paramètres de position
                             myLatlng = new google.maps.LatLng(crd.latitude, crd.longitude);
                             console.log(myLatlng);
+                            createMap();    
+
 
                             // Ajout d'un marqueur à la position trouvée
                             marker = new google.maps.Marker({
@@ -57,6 +59,8 @@ define(
                               title:"Vous êtes ici"
                             });
                                 markers.push(marker);
+
+                            console.log("Fin getCurrentPosition");
                         };
 
                         function error(err) {
@@ -96,21 +100,14 @@ define(
 
                         if(navigator.geolocation) {
                         // L'API est disponible 
-                            navigator.geolocation.getCurrentPosition(success, error, options);
+                            $('#loading').show();
+                            navigator.geolocation.getCurrentPosition(successPos, error, options);                            
                         }
                         else {
                             myLatlng = new google.maps.LatLng(45.1747598,5.7071189);
                             console.log('default'); console.log(myLatlng);
-                        }
-
-                        if(myLatlng==null) {
-                            $('#loading').show();
-                            //alert('Waiting for your position...');
-                            setTimeout(function(){
-                                createMap(); 
-                            }, 5000); // Try to create carte after timeout
-                            return false;
-                        }
+                            createMap();                           
+                        } 
                         
 
                     }
