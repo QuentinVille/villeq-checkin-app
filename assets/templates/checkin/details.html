@@ -1,5 +1,8 @@
 <h2>check in details</h2>
 
+<% _.each(checkInDetails, function(checkin){ %>
+
+
 <ul class="list-group">
 	<li class="list-group-item">
 		item <b><%= checkInDetails.get('id') %></b>
@@ -20,3 +23,6 @@
 		item <b><%= checkInDetails.get('deleted_at') %></b>
 	</li>
 </ul>
+
+<% }); %>
+

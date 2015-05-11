@@ -21,9 +21,9 @@ define(
                             console.log(checkin);
                             //console.log(checkin.models);
 
-                        //self.$el.html(self.template({
-                        //    checkInDetails: checkin 
-                        //})); 
+                        self.$el.html(self.template({
+                            checkInDetails: checkin.models
+                        }));
                            
                         }
                     });

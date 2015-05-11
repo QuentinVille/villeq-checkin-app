@@ -6,10 +6,21 @@
 
 <ul class="list-group">
 	<% _.each(checkInList, function(checkin){ %>
+	
+        
 		<li class="list-group-item">
-		<b><%= checkin.get('id') %></b> -
-		<img src=<%= checkin.get('user')['picture'] %> style="width: 80px; height: 90px;" >
-		<%= checkin.get('user')['name'] %> - Créé le : <b><%= checkin.get('created_at') %></b>
+			<button type="button" id="checkin<%=checkin.get('id')%>" class="btn btn-default btn-lg">
+	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> 
+					<b><%= checkin.get('id') %></b> -
+					<img src=<%= checkin.get('user')['picture'] %> style="width: 80px; height: 90px;" >
+					<%= checkin.get('user')['name'] %> - Créé le : <b><%= checkin.get('created_at') %></b>
+			</button>
 		</li>
+
+		<script type="text/javascript">
+		            document.getElementById("checkin<%=checkin.get('id')%>").onclick = function () {
+		                location.href = "#checkin/<%=checkin.get('id')%>";
+		            };
+		</script>
 	<% }); %>
 </ul>
