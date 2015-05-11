@@ -13,9 +13,23 @@
     </head>
     <body>
         <head><h1>CheckIn-App</h1></head>
-        <button type="button" class="btn btn-default btn-lg">
+        <button type="button" id="home" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+        </button>
+        
+        <button type="button" id="addButton" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New check IN
         </button>
+
+        <script type="text/javascript">
+            document.getElementById("addButton").onclick = function () {
+                location.href = "#checkin/add";
+            };
+
+            document.getElementById("home").onclick = function () {
+                location.href = "";
+            };
+        </script>
 
         <div id="chekinadd"></div>
         <div id="content"></div>
