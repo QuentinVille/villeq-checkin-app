@@ -1,6 +1,8 @@
-<h2>check in details</h2>
+<h2>Check in details</h2>
 
-<% _.each(checkInDetails, function(checkin){ %>
+<%checkin = _.clone(checkInDetails); 
+
+console.log(checkInDetails);%>
 
 
 <ul class="list-group">
@@ -23,6 +25,3 @@
 		item <b><%= checkInDetails.get('deleted_at') %></b>
 	</li>
 </ul>
-
-<% }); %>
-
